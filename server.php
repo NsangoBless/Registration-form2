@@ -3,9 +3,11 @@
     //initializing variables
     $username="";
     $email ="";
-    $errors = array()  
+    $errors = array() 
+        
     //connect to the database
     $db=mysqli_connect('localhost','root','registration');
+
     //REGISTER USER
     if(isset($_POST[reg_user])){
         //recieve all input values from the form
@@ -13,6 +15,7 @@
         $email=mysqli_real_escape_string($db, $_POST['email']);
         $password1=mysqli_real_escape_string($db, $_POST['password1']);
         $password2=mysqli_real_escape_string($db, $_POST['password2']);
+        
         //form validation: ensure that form is correctly filled...
         //by adding (array_push) corresponding errors unto $errors array
         if(empty($username)){ array_push($errors, "Username is required");}
@@ -31,6 +34,7 @@
             if($user[username]==$username){
 
             }
+            
             //finally, register user if there are no errors in the form
             if(count($errors==0)){
                 $password=md5($password1);//encrypt the password before saving in the database
